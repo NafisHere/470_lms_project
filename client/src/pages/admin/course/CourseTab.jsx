@@ -171,7 +171,9 @@ const CourseTab = () => {
           <div className="flex items-center gap-5">
             <div>
               <Label>Category</Label>
-              <Select
+
+
+              {/* <Select
                 defaultValue={input.category}
                 onValueChange={selectCategory}
               >
@@ -199,7 +201,40 @@ const CourseTab = () => {
                     <SelectItem value="HTML">HTML</SelectItem>
                   </SelectGroup>
                 </SelectContent>
+              </Select> */}
+
+              <Select
+                defaultValue={input.category}
+                onValueChange={selectCategory}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Category</SelectLabel>
+                    <SelectItem value="hatha_yoga">Hatha Yoga</SelectItem>
+                    <SelectItem value="vinyasa_flow">Vinyasa Flow</SelectItem>
+                    <SelectItem value="ashtanga_yoga">
+                    Ashtanga Yoga
+                    </SelectItem>
+                    <SelectItem value="yin_yoga">
+                      Yin Yoga
+                    </SelectItem>
+                    <SelectItem value="restorative_yoga">
+                      Restorative Yoga
+                    </SelectItem>
+                    <SelectItem value="prenatal_yoga">Prenatal Yoga</SelectItem>
+                    <SelectItem value="kundalini_yoga">Kundalini Yoga</SelectItem>
+                    <SelectItem value="meditation">Meditation</SelectItem>
+                    <SelectItem value="pranayama">Pranayama</SelectItem>
+                    <SelectItem value="yoga_therapy">Yoga Therapy
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
               </Select>
+
+
             </div>
             <div>
               <Label>Course Level</Label>

@@ -41,7 +41,7 @@ const CourseDetail = () => {
           <h1 className="font-bold text-2xl md:text-3xl">
             {course?.courseTitle}
           </h1>
-          <p className="text-base md:text-lg">Course Sub-title</p>
+          <p className="text-base md:text-lg">{course?.subTitle || "No subtitle available"}</p>
           <p>
             Created By{" "}
             <span className="text-[#C0C4FC] underline italic">
@@ -71,7 +71,7 @@ const CourseDetail = () => {
               {course.lectures.map((lecture, idx) => (
                 <div key={idx} className="flex items-center gap-3 text-sm">
                   <span>
-                  {lecture.isFree ? <PlayCircle size={14} /> : <Lock size={14} />}
+                    {lecture.isPreviewFree ? <PlayCircle size={14} /> : <Lock size={14} />}
                   </span>
                   <p>{lecture.lectureTitle}</p>
                 </div>
@@ -90,9 +90,9 @@ const CourseDetail = () => {
                   controls={true}
                 />
               </div>
-              <h1>Lecture title</h1>
+              <h1>{course.lectures[0]?.lectureTitle}</h1>
               <Separator className="my-2" />
-              <h1 className="text-lg md:text-xl font-semibold">Course Price</h1>
+              <h1 className="text-lg md:text-xl font-semibold"> Price: ${course.coursePrice}</h1>
             </CardContent>
             <CardFooter className="flex justify-center p-4">
               {purchased ? (

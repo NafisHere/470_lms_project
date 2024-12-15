@@ -49,11 +49,9 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <School size={"30"} />
           <Link to="/">
-          <h1 className="hidden md:block font-extrabold text-2xl text-emerald-500">
-                Yogic Aura
-              </h1>
-
-            
+            <h1 className="hidden md:block font-extrabold text-2xl">
+              Yogic Aura
+            </h1>
           </Link>
         </div>
         {/* User icons and dark mode icon  */}
@@ -87,15 +85,7 @@ const Navbar = () => {
                 {user?.role === "instructor" && (
                   <>
                     <DropdownMenuSeparator />
-                    {/* <DropdownMenuItem><Link to="/admin/dashboard">Dashboard</Link></DropdownMenuItem> */}
-                    <DropdownMenuItem className="px-4 py-2 hover:bg-emerald-500 rounded-md">
-                        <Link
-                          to="/admin/dashboard"
-                          className="text-emerald-500 hover:text-white font-semibold"
-                        >
-                          Dashboard
-                        </Link>
-                      </DropdownMenuItem>
+                    <DropdownMenuItem><Link to="/admin/dashboard">Dashboard</Link></DropdownMenuItem>
                   </>
                 )}
               </DropdownMenuContent>
@@ -113,7 +103,7 @@ const Navbar = () => {
       </div>
       {/* Mobile device  */}
       <div className="flex md:hidden items-center justify-between px-4 h-full">
-        <h1 className="font-extrabold text-2xl">Yogic Aura</h1>
+        <h1 className="font-extrabold text-2xl">E-learning</h1>
         <MobileNavbar user={user}/>
       </div>
     </div>
@@ -138,7 +128,7 @@ const MobileNavbar = ({user}) => {
       </SheetTrigger>
       <SheetContent className="flex flex-col">
         <SheetHeader className="flex flex-row items-center justify-between mt-2">
-          <SheetTitle> <Link to="/">Yogic Aura</Link></SheetTitle>
+          <SheetTitle> <Link to="/">E-Learning</Link></SheetTitle>
           <DarkMode />
         </SheetHeader>
         <Separator className="mr-2" />
@@ -150,17 +140,7 @@ const MobileNavbar = ({user}) => {
         {user?.role === "instructor" && (
           <SheetFooter>
             <SheetClose asChild>
-               {/* <Button type="submit" onClick={()=> navigate("/admin/dashboard")}>Dashboard</Button> */ }
-               <Button
-                  type="submit"
-                  onClick={() => navigate("/admin/dashboard")}
-                  className="px-4 py-2 bg-emerald-500 text-black font-semibold rounded-lg shadow-md hover:bg-emerald-500 hover:ring-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-30"
-                >
-                  Dashboard
-                </Button>
-
-
-
+              <Button type="submit" onClick={()=> navigate("/admin/dashboard")}>Dashboard</Button>
             </SheetClose>
           </SheetFooter>
         )}

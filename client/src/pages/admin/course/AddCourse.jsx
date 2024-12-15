@@ -64,6 +64,33 @@ const AddCourse = () => {
         </div>
         <div>
           <Label>Category</Label>
+
+          {/* <Select onValueChange={getSelectedCategory}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Category</SelectLabel>
+                <SelectItem value="Next JS">Next JS</SelectItem>
+                <SelectItem value="Data Science">Data Science</SelectItem>
+                <SelectItem value="Frontend Development">
+                  Frontend Development
+                </SelectItem>
+                <SelectItem value="Fullstack Development">
+                  Fullstack Development
+                </SelectItem>
+                <SelectItem value="MERN Stack Development">
+                  MERN Stack Development
+                </SelectItem>
+                <SelectItem value="Javascript">Javascript</SelectItem>
+                <SelectItem value="Python">Python</SelectItem>
+                <SelectItem value="Docker">Docker</SelectItem>
+                <SelectItem value="MongoDB">MongoDB</SelectItem>
+                <SelectItem value="HTML">HTML</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select> */}
           <Select onValueChange={getSelectedCategory}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a category" />
@@ -90,6 +117,7 @@ const AddCourse = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
+
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" onClick={() => navigate("/admin/course")}>
