@@ -23,6 +23,8 @@ import {
 } from "./components/ProtectedRoutes";
 import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRoute";
 import { ThemeProvider } from "./components/ThemeProvider";
+import Review from "./pages/student/Review";
+import CalendarComponent from "./pages/student/Calendar";
 
 const appRouter = createBrowserRouter([
   {
@@ -63,6 +65,14 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
+        path: "calendar",
+        element: (
+          <ProtectedRoute>
+            <CalendarComponent />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "course/search",
         element: (
           <ProtectedRoute>
@@ -84,6 +94,16 @@ const appRouter = createBrowserRouter([
           <ProtectedRoute>
             <PurchaseCourseProtectedRoute>
             <CourseProgress />
+            </PurchaseCourseProtectedRoute>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "course-review/:courseId",
+        element: (
+          <ProtectedRoute>
+            <PurchaseCourseProtectedRoute>
+            <Review />
             </PurchaseCourseProtectedRoute>
           </ProtectedRoute>
         ),
