@@ -78,6 +78,10 @@ const Navbar = () => {
                     {" "}
                     <Link to="profile">Edit Profile</Link>{" "}
                   </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    {" "}
+                    <Link to="calendar">Calendar</Link>{" "}
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={logoutHandler}>
                     Log out
                   </DropdownMenuItem>
@@ -135,6 +139,7 @@ const MobileNavbar = ({user}) => {
         <nav className="flex flex-col space-y-4">
           <Link to="/my-learning">My Learning</Link>
           <Link to="/profile">Edit Profile</Link>
+          <Link to="/calendar">Calendar</Link>
           <p>Log out</p>
         </nav>
         {user?.role === "instructor" && (
