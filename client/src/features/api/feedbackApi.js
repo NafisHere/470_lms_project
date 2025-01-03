@@ -1,18 +1,38 @@
-import { apiSlice } from "./apiSlice";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const feedbackApi = apiSlice.injectEndpoints({
+const FEEDBACK_API = "http://localhost:8080/api/v1/feedback";
+
+export const feedbackApi = createApi({
+  reducerPath: "feedbackApi",
+  tagTypes: ["Feedbacks"],
+  baseQuery: fetchBaseQuery({
+    baseUrl: FEEDBACK_API,
+    credentials: "include",   
+  }),
   endpoints: (builder) => ({
-    postFeedback: builder.mutation({
-      query: ({ courseId, feedback }) => ({
-        url: `/feedback/${courseId}`,
+ 
+    createFeedback: builder.mutation({
+      query: ({ comment, rating, userId, courseId }) => ({
+        url: `/${courseId}`,
         method: "POST",
-        body: feedback,
+        body: { comment, rating, userId },
       }),
+ 
+      invalidatesTags: ["Feedbacks"],
     }),
+ 
     getFeedbacks: builder.query({
-      query: (courseId) => `/feedback/${courseId}`,
+      query: (courseId) => ({
+        url: `/${courseId}`,
+        method: "GET",
+      }),
+      providesTags: ["Feedbacks"],
     }),
+ 
   }),
 });
 
-export const { usePostFeedbackMutation, useGetFeedbacksQuery } = feedbackApi;
+export const {
+  useCreateFeedbackMutation,
+  useGetFeedbacksQuery,
+} = feedbackApi;
