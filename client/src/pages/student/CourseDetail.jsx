@@ -39,7 +39,8 @@ const CourseDetail = () => {
   };
 
   const handleShowAllFeedback = () => {
-    navigate(`/show-feedback/${courseId}`);
+    // Updated redirect to feedbackx.jsx page
+    navigate(`/feedback/${courseId}`);
   };
 
   return (
