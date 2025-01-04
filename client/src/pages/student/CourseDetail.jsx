@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useGetCourseDetailWithStatusQuery } from "@/features/api/purchaseApi";
+import { useGetReviewsByCourseQuery } from "@/features/api/reviewApi";
 import { BadgeInfo, Lock, PlayCircle } from "lucide-react";
 import React from "react";
 import ReactPlayer from "react-player";
@@ -22,11 +23,20 @@ const CourseDetail = () => {
   const { data, isLoading, isError } =
     useGetCourseDetailWithStatusQuery(courseId);
 
+    //Farhan: Get reviews from backend
+  const {data: reviewData, isLoading: reviewIsLoading, isError: reviewIsError} = 
+    useGetReviewsByCourseQuery(courseId);
+
   if (isLoading) return <h1>Loading...</h1>;
   if (isError) return <h>Failed to load course details</h>;
 
+  if (reviewIsLoading) return <h1>Loading...</h1>;
+  if (reviewIsError) return <h>Failed to load review details</h>;
+
   const { course, purchased } = data;
   console.log(purchased);
+
+  const {success, reviews} = reviewData;
 
   const handleContinueCourse = () => {
     if(purchased){
@@ -56,28 +66,46 @@ const CourseDetail = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto my-5 px-4 md:px-8 flex flex-col lg:flex-row justify-between gap-10">
-        <div className="w-full lg:w-1/2 space-y-5">
-          <h1 className="font-bold text-xl md:text-2xl">Description</h1>
-          <p
-            className="text-sm"
-            dangerouslySetInnerHTML={{ __html: course.description }}
-          />
-          <Card>
-            <CardHeader>
-              <CardTitle>Course Content</CardTitle>
-              <CardDescription>{course.lectures.length} lectures</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {course.lectures.map((lecture, idx) => (
-                <div key={idx} className="flex items-center gap-3 text-sm">
-                  <span>
-                    {lecture.isPreviewFree ? <PlayCircle size={14} /> : <Lock size={14} />}
-                  </span>
-                  <p>{lecture.lectureTitle}</p>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+        <div className="flex flex-col gap-10 w-full">
+          <div className="w-full lg:w-1/2 space-y-5">
+            <h1 className="font-bold text-xl md:text-2xl">Description</h1>
+            <p
+              className="text-sm"
+              dangerouslySetInnerHTML={{ __html: course.description }}
+            />
+            <Card>
+              <CardHeader>
+                <CardTitle>Course Content</CardTitle>
+                <CardDescription>{course.lectures.length} lectures</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {course.lectures.map((lecture, idx) => (
+                  <div key={idx} className="flex items-center gap-3 text-sm">
+                    <span>
+                      {lecture.isPreviewFree ? <PlayCircle size={14} /> : <Lock size={14} />}
+                    </span>
+                    <p>{lecture.lectureTitle}</p>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </div>
+          {/* Farhan: Add new section to show review */}
+          <div className="w-full lg:w-1/2 space-y-5">
+            <h1 className="font-bold text-xl md:text-2xl">Reviews</h1>
+            {reviews.length <= 0 && <p>No reviews yet</p>}
+            {reviews.map((review, idx) => (
+                <Card key={idx}>
+                <CardHeader>
+                  <CardTitle>{review?.userId?.name}</CardTitle>
+                  <CardDescription>Rating {review.rating}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <p>{review.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
         <div className="w-full lg:w-1/3">
           <Card>
