@@ -34,6 +34,14 @@ const CourseDetail = () => {
     }
   }
 
+  const handleShowFeedback = () => {
+    navigate(`/course-feedback/${courseId}`);
+  };
+
+  const handleShowAllFeedback = () => {
+    navigate(`/show-feedback/${courseId}`);
+  };
+
   return (
     <div className="space-y-5">
       <div className="bg-[#2D2F31] text-white">
@@ -62,6 +70,9 @@ const CourseDetail = () => {
             className="text-sm"
             dangerouslySetInnerHTML={{ __html: course.description }}
           />
+          <Button onClick={handleShowFeedback} className="bg-blue-900 text-white mt-2">Give Feedback</Button> <tb />
+          <Button onClick={handleShowAllFeedback} className="bg-blue-900 text-white mt-2">Show Feedback</Button>
+
           <Card>
             <CardHeader>
               <CardTitle>Course Content</CardTitle>

@@ -16,6 +16,8 @@ import EditLecture from "./pages/admin/lecture/EditLecture";
 import CourseDetail from "./pages/student/CourseDetail";
 import CourseProgress from "./pages/student/CourseProgress";
 import SearchPage from "./pages/student/SearchPage";
+  
+
 import {
   AdminRoute,
   AuthenticatedUser,
@@ -23,7 +25,9 @@ import {
 } from "./components/ProtectedRoutes";
 import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRoute";
 import { ThemeProvider } from "./components/ThemeProvider";
-
+import CourseFeedback from "./pages/student/CourseFeedback";
+import ShowFeedback from "./pages/student/ShowFeedback";
+ 
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -88,6 +92,24 @@ const appRouter = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      
+      {
+        path: "course-feedback/:courseId",
+        element: (
+          <ProtectedRoute>
+            <CourseFeedback />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "course-feedback-detail/:courseId",  
+        element: (
+          <ProtectedRoute>
+            <ShowFeedback />
+          </ProtectedRoute>
+        ),
+      },
+      
 
       // admin routes start from here
       {
