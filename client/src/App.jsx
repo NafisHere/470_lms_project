@@ -27,6 +27,7 @@ import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRo
 import { ThemeProvider } from "./components/ThemeProvider";
 import CourseFeedback from "./pages/student/CourseFeedback";
 import ShowFeedback from "./pages/student/ShowFeedback";
+import Feedbackx from "./pages/student/Feedbackx";
  
 const appRouter = createBrowserRouter([
   {
@@ -106,6 +107,15 @@ const appRouter = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <ShowFeedback />
+          </ProtectedRoute>
+        ),
+      },
+
+      {
+        path: "feedback/:courseId",
+        element: (
+          <ProtectedRoute>
+            <Feedbackx />
           </ProtectedRoute>
         ),
       },
