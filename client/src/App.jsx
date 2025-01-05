@@ -28,6 +28,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import CourseFeedback from "./pages/student/CourseFeedback";
 import ShowFeedback from "./pages/student/ShowFeedback";
 import Feedbackx from "./pages/student/Feedbackx";
+import GiveFeedback from "./pages/student/Givefeedback";
  
 const appRouter = createBrowserRouter([
   {
@@ -116,6 +117,14 @@ const appRouter = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Feedbackx />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "give-feedback/:courseId", // New route for giving feedback
+        element: (
+          <ProtectedRoute>
+            <GiveFeedback />
           </ProtectedRoute>
         ),
       },
