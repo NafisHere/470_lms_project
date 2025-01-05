@@ -35,7 +35,7 @@ const CourseDetail = () => {
   }
 
   const handleShowFeedback = () => {
-    navigate(`/course-feedback/${courseId}`);
+    navigate(`/give-feedback/${courseId}`);
   };
 
   const handleShowAllFeedback = () => {
